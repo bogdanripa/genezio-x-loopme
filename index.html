@@ -735,7 +735,14 @@ class Component extends DCLogic {
   function stopAudio() {
     if (audio) { audio.pause(); audio.onended = null; audio.onerror = null; audio = null; }
   }
-  function stopPresent() { presenting = false; clearTimer(); stopAudio(); }
+  function stopPresent() { presenting = false; clearTimer(); stopAudio(); syncToggle(); }
+  function startPresent() {
+    var ds = deck(); if (!ds) return;
+    presenting = true;
+    ds.setAttribute('no-rail', '');              // full browser
+    presentStep();
+    syncToggle();
+  }
 
   // Play the current slide's clip once; onEnd() fires when it finishes.
   function play(onEnd) {
@@ -753,7 +760,7 @@ class Component extends DCLogic {
     play(function () {                       // this slide's narration ended
       if (!presenting) return;
       var idx = currentIndex();
-      if (idx == null || idx >= slideCount() - 1) { presenting = false; return; } // reached the end
+      if (idx == null || idx >= slideCount() - 1) { presenting = false; syncToggle(); return; } // reached the end
       clearTimer();
       timer = setTimeout(function () {        // 500ms after speech ends
         if (!presenting) return;
@@ -781,10 +788,7 @@ class Component extends DCLogic {
     if (k === 'p' || k === 'P') {
       e.preventDefault();
       if (presenting) { stopPresent(); return; }
-      var ds = deck(); if (!ds) return;
-      presenting = true;
-      ds.setAttribute('no-rail', '');              // full browser
-      presentStep();
+      startPresent();
       return;
     }
   });
@@ -794,6 +798,59 @@ class Component extends DCLogic {
     if (programmaticNav) { programmaticNav = false; return; } // our own present-mode advance
     if (presenting) stopPresent(); else stopAudio();
   });
+
+  /* ── Mobile present toggle ──────────────────────────────────────────
+     Touch devices have no keyboard, so the P-key present flow (voice
+     narration + auto-advance) is unreachable. On a coarse-pointer device
+     we surface a button in the upper-right of the presentation that
+     toggles the same mode on/off. Tapping it is the user gesture the
+     first Audio.play() needs. */
+  var toggleBtn = null;
+  function isMobile() {
+    return matchMedia('(hover: none), (pointer: coarse)').matches;
+  }
+  function syncToggle() {
+    if (!toggleBtn) return;
+    toggleBtn.setAttribute('aria-pressed', presenting ? 'true' : 'false');
+    toggleBtn.classList.toggle('is-on', presenting);
+    toggleBtn.querySelector('.label').textContent = presenting ? 'Stop' : 'Play';
+  }
+  function buildToggle() {
+    if (toggleBtn || !isMobile()) return;
+    var style = document.createElement('style');
+    style.textContent =
+      '.deck-present-toggle{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);' +
+      'right:calc(env(safe-area-inset-right,0px) + 12px);z-index:2147483647;' +
+      'display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:none;' +
+      'border-radius:999px;font-family:\'IBM Plex Mono\',monospace;font-size:15px;' +
+      'font-weight:500;letter-spacing:0.04em;color:#fff;background:rgba(16,32,26,0.72);' +
+      '-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer;' +
+      'box-shadow:0 6px 20px rgba(0,0,0,0.28);-webkit-tap-highlight-color:transparent;' +
+      'touch-action:manipulation;transition:background .15s ease}' +
+      '.deck-present-toggle.is-on{background:var(--accent,#009660);color:#fff}' +
+      '.deck-present-toggle .icon{width:9px;height:11px;flex:0 0 auto;background:currentColor;' +
+      'clip-path:polygon(0 0,100% 50%,0 100%)}' +
+      '.deck-present-toggle.is-on .icon{clip-path:none;width:10px;height:11px}';
+    document.head.appendChild(style);
+
+    toggleBtn = document.createElement('button');
+    toggleBtn.type = 'button';
+    toggleBtn.className = 'deck-present-toggle';
+    toggleBtn.setAttribute('aria-label', 'Toggle voice narration');
+    toggleBtn.innerHTML = '<span class="icon" aria-hidden="true"></span><span class="label">Play</span>';
+    toggleBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (presenting) stopPresent(); else startPresent();
+    });
+    document.body.appendChild(toggleBtn);
+    syncToggle();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildToggle);
+  } else {
+    buildToggle();
+  }
 })();
 </script>
 </body>
