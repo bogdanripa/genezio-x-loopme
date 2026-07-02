@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; height:100%; background:#FAFBFA; }
+  :root {
+    --accent:#009660;
+    --accent-dim:rgba(0,150,96,0.45);
+    --src-display:flex;
+    --type-title:76px; --type-subtitle:42px; --type-body:32px; --type-small:26px; --type-src:24px;
+    --pad-x:110px; --pad-top:92px; --pad-bottom:84px;
+    --gap-title:48px; --gap-item:28px;
+  }
+  @keyframes flywheel-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%" data-uneditable="">
+
+  <!-- ═══ 1 · TITLE ═══ -->
+  <section data-label="Title" data-speaker-notes="TALKING POINTS
+• Introduce yourself: Bogdan, co-founder of Genezio — we build answer-engine analytics
+• Set the frame: this is an industry briefing, not a vendor pitch
+• Nod to the room: LoopMe applied AI to brand advertising before it was fashionable
+• Promise: how answer engines actually work, why they're already revenue, and real WHOOP findings
+
+READ-ALOUD
+Thanks for having me. I'm Bogdan, co-founder of Genezio. This is not a sales pitch — it's a briefing on a shift I think this room will appreciate faster than most, because you applied AI to brand advertising before almost anyone. In the next twenty minutes I'll show you how answer engines actually work under the hood, why they're already a revenue-relevant channel for advertisers, and what we found when we pointed our instruments at a brand you know well — WHOOP." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="display:flex;align-items:center;justify-content:space-between">
+      <img src="assets/genezio-logo.svg" alt="Genezio" style="height:52px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#71827A">GENEZIO × LOOPME · JULY 2026</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1.15fr 0.85fr;gap:90px;align-items:center;flex:1;min-height:0">
+      <div style="display:flex;flex-direction:column;gap:40px">
+        <h1 style="font-family:'Space Grotesk',sans-serif;font-size:96px;font-weight:600;letter-spacing:-0.025em;line-height:1.04;margin:0"><span style="display:block">The world stopped</span><span style="display:block">searching.</span><span style="display:block;color:var(--accent)">It started asking.</span></h1>
+        <p style="font-size:var(--type-body);color:#57685F;margin:0;max-width:640px">Winning the answer engine era — measurement and influence for the channel your advertisers can't see yet.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="display:flex;flex-direction:column;gap:14px;opacity:0.35">
+          <div style="height:16px;width:70%;background:#D9E0DC;border-radius:4px"></div>
+          <div style="height:16px;width:88%;background:#E7ECE9;border-radius:4px"></div>
+          <div style="height:16px;width:60%;background:#D9E0DC;border-radius:4px"></div>
+          <div style="height:16px;width:80%;background:#E7ECE9;border-radius:4px"></div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;letter-spacing:0.12em;text-align:center">— 2004–2024 —</div>
+        <div style="background:#FFFFFF;border:1px solid rgba(0,150,96,0.35);border-radius:24px 24px 24px 6px;padding:34px 38px;box-shadow:0 24px 60px rgba(16,32,26,0.10)">
+          <p style="font-size:34px;line-height:1.4;margin:0;color:#182720">“What's the best wearable I could get for my husband to help him monitor his sleep?”</p>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:baseline;justify-content:space-between">
+      <div style="font-size:var(--type-small);color:#57685F"><span style="color:#10201A;font-weight:600">Bogdan Ripa</span> · Co-founder, Genezio</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">genezio.com</div>
+    </div>
+  </section>
+
+  <!-- ═══ 2 · OLD WORLD ═══ -->
+  <section data-label="One owner" data-speaker-notes="TALKING POINTS
+• Google owned discovery end-to-end: results, SEO, ads, shopping listings
+• Not just content — commerce too: from the smallest Shopify store to Amazon, everyone fought for the same results page
+• Content monetization = readership: subscriptions or walls of ads
+• Humor beat: the ad after every paragraph
+• Everyone in this room built expertise and revenue on this model — that's why what's next matters
+
+READ-ALOUD
+For twenty years, discovery had one owner. Google owned the whole thing — the results page, the SEO industry that grew around it, the ads, the product listings. And this wasn't just publishers writing articles — it was everyone selling anything online, from the smallest Shopify store to Amazon itself, all fighting for a spot on the same results page. Content was monetized by readership: you brought readers to your site and either asked them to subscribe, like the Journal or the Times, or you made them wade through an ad after every single paragraph. We all built careers, tooling and revenue on this model. That's exactly why what comes next matters." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">01 · The old world</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">For 20 years, discovery had one owner.</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:44px;margin-top:20px">
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:22px">
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">01</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">Search results</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Ten blue links. The front door of the internet.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:34px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">02</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">SEO industry</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">A whole profession built on ranking for keywords.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:34px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">03</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">Ads &amp; Shopping</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Intent auctioned by the keyword, listing by listing.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:34px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">04</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">Publishers</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Traffic in, readership monetized out.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">05</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">E-commerce</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">From the smallest Shopify store to Amazon — all fighting for the same results page.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px;align-items:stretch">
+      <div style="flex:1;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:28px 34px;display:flex;align-items:center;gap:24px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em;white-space:nowrap">MODEL A</div>
+        <div style="font-size:var(--type-small);color:#3D4F46">Pay the subscription. WSJ, NYT, the paywall economy.</div>
+      </div>
+      <div style="flex:1;border:1px solid rgba(16,32,26,0.08);border-radius:16px;padding:28px 34px;display:flex;align-items:center;gap:24px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em;white-space:nowrap">MODEL B</div>
+        <div style="font-size:var(--type-small);color:#3D4F46">Read for free — through an ad after every paragraph.</div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ═══ 3 · THE BREAK ═══ -->
+  <section data-label="We ask now" data-speaker-notes="TALKING POINTS
+• Pause — let the question on screen breathe
+• This is a real, category-defining question for WHOOP's market
+• 12–15% of global search is AI tools (end 2025, up from 5–6%); Gartner's −25% call is tracking; ~900M weekly ChatGPT users
+• We'll come back to this exact question all the way through
+
+READ-ALOUD
+This is all changing. Instead of typing keywords into Google, we open ChatGPT and ask a real question — like this one: what's the best wearable I could get for my husband to help him monitor his sleep? That's not a keyword. That's a conversation. And it's not fringe behavior: AI tools reached twelve to fifteen percent of global search by the end of last year, up from five or six. Keep this question in mind — we'll follow it through the whole talk." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">02 · The break</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">We don't search anymore. We ask.</h2>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center">
+      <div style="background:#FFFFFF;border:1px solid rgba(0,150,96,0.35);border-radius:32px 32px 32px 8px;padding:60px 72px;max-width:1280px;box-shadow:0 32px 80px rgba(16,32,26,0.12)">
+        <p style="font-family:'Space Grotesk',sans-serif;font-size:54px;font-weight:500;line-height:1.3;margin:0;color:#10201A">“What's the best wearable I could get for my husband to help him <span style="color:var(--accent)">monitor his sleep</span>?”</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:60px">
+      <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px"><span style="font-family:'Space Grotesk',sans-serif;color:#10201A;font-size:52px;font-weight:600;white-space:nowrap">12–15%</span><span style="font-size:var(--type-small);color:#57685F;line-height:1.4">of global searches ran through AI tools by late 2025 — up from 5–6% a year earlier</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px"><span style="font-family:'Space Grotesk',sans-serif;color:#10201A;font-size:52px;font-weight:600;white-space:nowrap">−25%</span><span style="font-size:var(--type-small);color:#57685F;line-height:1.4">drop in traditional search volume by 2026, per Gartner — tracking on target</span></div>
+      <div style="display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px"><span style="font-family:'Space Grotesk',sans-serif;color:#10201A;font-size:52px;font-weight:600;white-space:nowrap">~900M</span><span style="font-size:var(--type-small);color:#57685F;line-height:1.4">ChatGPT weekly active users</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ 4 · TRIAGE ═══ -->
+  <section data-label="Triage" data-speaker-notes="TALKING POINTS
+• First decision in the first milliseconds: answer from training data, or go online?
+• 'Who won WW2?' — training data, no lookup, no brand at stake
+• Our sleep-wearable question — fresh, comparative, commercial → live retrieval
+• Almost every buying question triggers the right-hand path
+
+READ-ALOUD
+So what happens behind the scenes? It's fascinating. First, the model triages your question: do I already know this, or do I need to go look? Ask it who won the Second World War and it answers from training data — no lookup, and frankly, no brand at stake. But our sleep-wearable question needs fresh, real-world, comparative information. It has to go online. And here's the thing: almost every commercial question — every buying question your customers ask — lands on that side." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">03 · INSIDE THE ANSWER · 500MS, PART 1</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">First decision: do I already know, or do I go look?</h2>
+    <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0">
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.14);border-radius:18px;padding:26px 46px;font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:500">Your question arrives</div>
+      <svg viewBox="0 0 900 110" style="width:900px;height:110px;display:block">
+        <path d="M450,0 C450,55 225,55 225,110" fill="none" stroke="rgba(16,32,26,0.25)" stroke-width="2"></path>
+        <path d="M450,0 C450,55 675,55 675,110" fill="none" stroke="rgba(0,150,96,0.6)" stroke-width="2.5"></path>
+      </svg>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;width:1400px">
+        <div style="border:1px solid rgba(16,32,26,0.12);border-radius:20px;padding:40px 44px;display:flex;flex-direction:column;gap:16px;opacity:0.65">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F;letter-spacing:0.1em">I ALREADY KNOW</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600">Answered from training data</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.5">“Who won WW2?” — settled facts, no lookup. No brand is at stake.</div>
+        </div>
+        <div style="border:1px solid rgba(0,150,96,0.45);background:rgba(0,150,96,0.05);border-radius:20px;padding:40px 44px;display:flex;flex-direction:column;gap:16px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">GO LOOK</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600">Live retrieval from the web</div>
+          <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.5">“Best sleep wearable for my husband?” — fresh, comparative, commercial. <span style="color:var(--accent)">Almost every buying question lands here.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 5 · FANOUT ═══ -->
+  <section data-label="Query fanout" data-speaker-notes="TALKING POINTS
+• Smart-assistant analogy: a diligent researcher running several searches, reading, synthesizing
+• The term to own: query fanout — teach it to the room
+• Happens in parallel, in a few hundred milliseconds — the 'wow' beat
+• Google confirms the shift: AI Mode queries are 3× longer and doubling every quarter
+• Dozens of pages read, a handful cited, two or three brands named
+
+READ-ALOUD
+Going online works like a very diligent assistant: to answer you properly, it would open a browser, run a number of searches, read the results, and summarize. That's exactly what these models do. It's called a query fanout — one question spawns several web searches in parallel. The model gets back a list of pages, reads through them, picks what's relevant, and synthesizes one answer. All of it in a few hundred milliseconds. And notice the end state: dozens of pages read, a handful cited, and two or three brands named. Being one of those names is the whole game." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">04 · Inside the answer · 500ms, part 2 · Query fanout</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">One question becomes ten searches. Instantly.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:410px 80px 650px 80px 1fr;align-items:center;min-height:0;margin-top:20px">
+      <div style="background:#FFFFFF;border:1px solid rgba(0,150,96,0.35);border-radius:22px 22px 22px 6px;padding:32px 36px">
+        <p style="font-size:30px;line-height:1.45;margin:0;color:#182720">“What's the best wearable for my husband to monitor his sleep?”</p>
+      </div>
+      <svg viewBox="0 0 100 620" preserveAspectRatio="none" style="width:100%;height:620px;display:block">
+        <path d="M0,310 C55,310 45,50 100,50" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,310 C55,310 45,180 100,180" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,310 C55,310 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,310 C55,310 45,440 100,440" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,310 C55,310 45,570 100,570" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+      </svg>
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="border:1px solid rgba(16,32,26,0.14);border-radius:999px;padding:18px 30px;font-family:'IBM Plex Mono',monospace;font-size:25px;color:#3D4F46;white-space:nowrap">best sleep tracking wearables 2026</div>
+        <div style="border:1px solid rgba(16,32,26,0.14);border-radius:999px;padding:18px 30px;font-family:'IBM Plex Mono',monospace;font-size:25px;color:#3D4F46;white-space:nowrap">WHOOP vs Oura sleep accuracy</div>
+        <div style="border:1px solid rgba(16,32,26,0.14);border-radius:999px;padding:18px 30px;font-family:'IBM Plex Mono',monospace;font-size:25px;color:#3D4F46;white-space:nowrap">sleep tracker for men comfort</div>
+        <div style="border:1px solid rgba(16,32,26,0.14);border-radius:999px;padding:18px 30px;font-family:'IBM Plex Mono',monospace;font-size:25px;color:#3D4F46;white-space:nowrap">wearable without screen sleep monitoring</div>
+        <div style="border:1px solid rgba(16,32,26,0.14);border-radius:999px;padding:18px 30px;font-family:'IBM Plex Mono',monospace;font-size:25px;color:#3D4F46;white-space:nowrap">WHOOP subscription worth it</div>
+      </div>
+      <svg viewBox="0 0 100 620" preserveAspectRatio="none" style="width:100%;height:620px;display:block">
+        <path d="M0,50 C55,50 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,180 C55,180 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,310 C55,310 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,440 C55,440 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+        <path d="M0,570 C55,570 45,310 100,310" fill="none" stroke="rgba(0,150,96,0.4)" stroke-width="2"></path>
+      </svg>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.12);border-radius:22px;padding:36px 40px;display:flex;flex-direction:column;gap:18px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;letter-spacing:0.1em">ONE SYNTHESIZED ANSWER</div>
+        <div style="font-size:28px;line-height:1.55;color:#3D4F46">“For dedicated sleep tracking, <span style="color:var(--accent);font-weight:600">WHOOP</span> and <span style="color:#10201A;font-weight:600">Oura</span> lead; <span style="color:#10201A;font-weight:600">Garmin</span> if he also runs…”</div>
+        <div style="font-size:24px;color:#71827A">Reads dozens of pages. Cites a handful. Names two or three brands.</div>
+      </div>
+    </div>
+    <div style="display:var(--src-display);gap:40px;font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A"><span>Google: avg. AI Mode query = 3× the length of a search; AI Mode queries doubling every quarter</span></div>
+  </section>
+
+  <!-- ═══ 6 · ROBOT READER ═══ -->
+  <section data-label="Robot reader" data-speaker-notes="TALKING POINTS
+• The paradigm shift most marketers haven't internalized: the first reader of your content is a machine
+• It skips display ads (no revenue), ignores fluff and hooks (no ranking tricks)
+• It keeps facts, comparisons, specs, evidence, structure
+• 'Engaging' and 'citable' are now two different disciplines
+• Cannes framing: from the attention economy to the intelligence economy
+
+READ-ALOUD
+Here's the twist almost nobody talks about. For two decades we wrote content to hold human attention — hooks, storytelling, hero videos, and the ads that paid for it all. But during a fanout, the reader on your page has no eyes. It skips your display ads — there goes the ad revenue. It ignores your fluff — there go the engagement tricks. It extracts facts, comparisons, specifications, evidence — and dismisses everything else. Engaging content and citable content are now two different disciplines. As the Cannes stage put it this year: we're moving from the attention economy to the intelligence economy. Attention was measured in eyeballs. Intelligence is measured in whether the machine finds you useful." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">05 · The twist</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">Your content's most important reader doesn't have eyes.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:36px;min-height:0">
+      <div style="border:1px solid rgba(16,32,26,0.1);border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F;letter-spacing:0.1em">WHAT A HUMAN SEES</div>
+        <div style="background:#E7ECE9;border-radius:10px;padding:16px 22px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;text-decoration:line-through">display ad — 728×90</div>
+        <div style="height:18px;width:85%;background:#D9E0DC;border-radius:4px"></div>
+        <div style="height:18px;width:70%;background:#E7ECE9;border-radius:4px"></div>
+        <div style="background:repeating-linear-gradient(45deg,#E3E9E5,#E3E9E5 12px,#DCE3DF 12px,#DCE3DF 24px);border-radius:10px;height:96px;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;text-decoration:line-through">hero video — autoplay</div>
+        <div style="height:18px;width:90%;background:#E7ECE9;border-radius:4px"></div>
+        <div style="height:18px;width:75%;background:#D9E0DC;border-radius:4px"></div>
+        <div style="background:#E7ECE9;border-radius:10px;padding:16px 22px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;text-decoration:line-through">newsletter popup</div>
+        <div style="height:18px;width:82%;background:#D9E0DC;border-radius:4px"></div>
+        <div style="height:18px;width:64%;background:#E7ECE9;border-radius:4px"></div>
+        <div style="height:18px;width:74%;background:#D9E0DC;border-radius:4px"></div>
+      </div>
+      <div style="border:1px solid rgba(0,150,96,0.4);background:rgba(0,150,96,0.04);border-radius:20px;padding:28px 40px;display:flex;flex-direction:column;gap:14px;overflow:hidden">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">WHAT THE MACHINE KEEPS</div>
+        <div style="border-left:3px solid var(--accent);padding:6px 0 6px 22px;font-size:var(--type-small);color:#182720">Battery life: 4–5 days · no screen · strap form factor</div>
+        <div style="border-left:3px solid var(--accent);padding:6px 0 6px 22px;font-size:var(--type-small);color:#182720">Sleep-stage accuracy vs polysomnography: study data, cited</div>
+        <div style="border-left:3px solid var(--accent);padding:6px 0 6px 22px;font-size:var(--type-small);color:#182720">WHOOP vs Oura vs Garmin — structured comparison table</div>
+        <div style="border-left:3px solid var(--accent);padding:6px 0 6px 22px;font-size:var(--type-small);color:#182720">Pricing &amp; subscription terms, stated plainly</div>
+        <div style="border-left:3px solid var(--accent);padding:6px 0 6px 22px;font-size:var(--type-small);color:#182720">Clear claims with evidence, schema, structure</div>
+        <div style="margin-top:auto;font-size:var(--type-small);color:#57685F;line-height:1.5">Facts, comparisons, specifications, evidence. Everything else is skipped — including the ads that paid for the page.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px;margin-top:34px;font-size:var(--type-small);color:#3D4F46">
+      <div style="flex:1;display:flex;gap:16px;align-items:baseline"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace">01</span><span>Ad-funded readership economics collapse when the reader is a crawler.</span></div>
+      <div style="flex:1;display:flex;gap:16px;align-items:baseline"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace">02</span><span>“Engaging” and “citable” are now two different disciplines.</span></div>
+      <div style="flex:1;display:flex;gap:16px;align-items:baseline"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace">03</span><span>Structure and specificity decide whether you exist in the answer.</span></div>
+    </div>
+  </section>
+
+  <!-- ═══ 7 · INVISIBLE VISITOR ═══ -->
+  <section data-label="Invisible visitor" data-speaker-notes="TALKING POINTS
+• The engine visits your site on behalf of the user — research happens inside the chat
+• GA4 shows nothing, or untraceable 'direct' traffic
+• Three breaks: can't see them, can't guide them, can't attribute them
+• Data: ~64% of AI Mode users click nothing; ~70% of AI traffic arrives with no referrer; publisher referrals −34%
+• Analogy: the shopper sent a personal assistant to walk your aisles — your camera can't see it
+
+READ-ALOUD
+And here's the consequence: your best prospects no longer show up in your analytics. The answer engine visits your website for the user. The reading, the comparing, the shortlisting — it all happens inside the chat. In GA4 that visit either never appears or shows up as untraceable direct traffic. You used to be the retailer who could watch every shopper walk the aisles. Now the shopper sends a personal assistant, the assistant walks your aisles, and your camera can't see it. The store visit still happens — you've just lost your eyes. Which is why measurement is the first battle of this era." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">06 · The blackout</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">Your best prospects no longer show up in your analytics.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 2px 1fr;gap:50px;align-items:center;margin-top:16px;min-height:0;overflow:hidden">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F;letter-spacing:0.1em">WHAT GA4 SHOWS YOU</div>
+        <svg viewBox="0 0 560 240" preserveAspectRatio="none" style="width:100%;height:180px;display:block">
+          <line x1="0" y1="220" x2="560" y2="220" stroke="rgba(16,32,26,0.12)" stroke-width="1"></line>
+          <path d="M0,60 C120,70 200,110 300,150 C400,185 480,195 560,198" fill="none" stroke="#71827A" stroke-width="3"></path>
+        </svg>
+        <div style="font-size:var(--type-small);color:#57685F">Organic sessions, flattening — while your category's research volume grows.</div>
+      </div>
+      <div style="height:100%;background:linear-gradient(rgba(0,150,96,0),rgba(0,150,96,0.6),rgba(0,150,96,0))"></div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">WHAT'S ACTUALLY HAPPENING</div>
+        <svg viewBox="0 0 560 240" preserveAspectRatio="none" style="width:100%;height:180px;display:block">
+          <line x1="0" y1="220" x2="560" y2="220" stroke="rgba(16,32,26,0.12)" stroke-width="1"></line>
+          <path d="M0,200 C140,195 260,170 360,120 C440,80 510,45 560,25" fill="none" stroke="#009660" stroke-width="3"></path>
+        </svg>
+        <div style="font-size:var(--type-small);color:#3D4F46">AI conversations researching your brand — read, compared, shortlisted <span style="color:var(--accent)">inside the chat</span>.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px;margin-top:12px">
+      <div style="flex:1;border:1px solid rgba(16,32,26,0.1);border-radius:16px;padding:22px 30px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">Can't see them</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">The engine visits your site for the user. GA4 logs nothing — or “direct”.</div>
+      </div>
+      <div style="flex:1;border:1px solid rgba(16,32,26,0.1);border-radius:16px;padding:22px 30px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">Can't guide them</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">No landing journey, no pixel, no A/B test. The journey runs on the model's terms.</div>
+      </div>
+      <div style="flex:1;border:1px solid rgba(16,32,26,0.1);border-radius:16px;padding:22px 30px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">Can't attribute them</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">They convert as “direct” or branded search. Your dashboard credits the wrong channel.</div>
+      </div>
+    </div>
+    <div style="display:var(--src-display);gap:40px;margin-top:22px;font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A"><span>~64% of AI Mode users clicked nothing (Kevin Indig, n=48)</span><span>~70% of AI traffic arrives with no referrer (The Digital Bloom, 2026)</span><span>Google referrals to publishers −34% YoY (Conductor)</span></div>
+  </section>
+
+  <!-- ═══ 8 · PROOF WALL ═══ -->
+  <section data-label="Revenue proof" data-speaker-notes="TALKING POINTS
+• Lead with the first-party number: 37% of new signups for one Genezio customer came recommended by answer engines — this is already happening
+• Adobe Q1 2026: AI-referred traffic converts 42% better (full reversal from a year ago)
+• Shopify: AI-referred orders up 13× YoY; Semrush: 4.4× conversion; Ahrefs: 0.5% of traffic → 12% of signups
+• The why: journey compression — the AI already did the comparison shopping
+
+READ-ALOUD
+If you're in marketing you've probably noticed it already: the leads that arrive recommended by answer engines are few — and remarkably good. One of our customers saw thirty-seven percent of new account signups come recommended by answer engines. Thirty-seven percent. This is already happening. And the industry data agrees: Adobe measured AI-referred retail traffic converting forty-two percent better than everything else — a complete reversal from a year earlier. Shopify saw AI-referred orders grow thirteen-fold. Why is the quality so high? Journey compression. The AI already did the comparison shopping. The click isn't a browse — it's a decision." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">07 · The proof</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">Small traffic. Outsized revenue.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:1.2fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:26px;margin-top:var(--gap-title);min-height:0">
+      <div style="grid-row:span 2;background:rgba(0,150,96,0.07);border:1px solid rgba(0,150,96,0.5);border-radius:20px;padding:44px;display:flex;flex-direction:column;justify-content:center;gap:18px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:150px;font-weight:700;line-height:1;white-space:nowrap;color:var(--accent)">37%</div>
+        <div style="font-size:32px;font-weight:600;line-height:1.35">of new account signups arrived recommended by answer engines</div>
+        <div style="font-size:var(--type-small);color:#57685F">Genezio customer, first-party data. This is already happening.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:10px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;line-height:1;white-space:nowrap">+42%</div>
+        <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">better conversion, AI-referred vs non-AI retail traffic</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A">Adobe · Q1 2026 · 1T+ visits</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:10px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;line-height:1;white-space:nowrap">13×</div>
+        <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">growth in AI-referred orders, year over year</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A">Shopify · Q1 2026</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:10px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;line-height:1;white-space:nowrap">4.4×</div>
+        <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">conversion rate of AI visitors vs standard organic</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A">Semrush · 2026</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:34px;display:flex;flex-direction:column;justify-content:center;gap:10px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;line-height:1;white-space:nowrap">0.5→12%</div>
+        <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">of traffic → of signups: a ~23× conversion premium</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A">Ahrefs case study</div>
+      </div>
+    </div>
+    <div style="margin-top:34px;font-size:var(--type-small);color:#57685F">Why: journey compression. The AI already did the comparison shopping — the click is a decision, not a browse.</div>
+  </section>
+
+  <!-- ═══ 9 · PRE-QUALIFIED ═══ -->
+  <section data-label="Mid-funnel moved" data-speaker-notes="TALKING POINTS
+• The AI conversation compresses discovery and consideration into one dialogue
+• Needs described, options compared, shortlist formed — inside the chat
+• Most AI Mode users click nothing; those who click come to confirm
+• Bridge to this room: awareness, consideration, intent — the territory you measure in media — has migrated into a conversation
+
+READ-ALOUD
+By the time they click, they've already decided. The conversation compressed the whole middle of the funnel: the user described their needs, compared the options, and formed a shortlist — inside the chat. Most AI Mode users click nothing at all; the ones who do are coming to confirm. Now, this should sound familiar. Awareness, consideration, purchase intent — that's the exact territory this room measures and optimizes in media. That territory hasn't disappeared. It has migrated into a conversation that, today, almost nobody is instrumenting." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">08 · Why quality is so high</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">By the time they click, they've already decided.</h2>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;gap:0;margin-top:10px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;width:420px">
+        <div style="width:100%;background:#FFFFFF;border:1px solid rgba(16,32,26,0.1);border-radius:16px;padding:30px;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">Awareness</div>
+        <div style="font-size:var(--type-small);color:#57685F;text-align:center">Still shaped by media —<br>LoopMe's home turf</div>
+      </div>
+      <div style="width:90px;height:2px;background:rgba(0,150,96,0.4);margin:0 10px;align-self:center;transform:translateY(-34px)"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;width:520px">
+        <div style="width:100%;background:rgba(0,150,96,0.06);border:1px solid rgba(0,150,96,0.5);border-radius:24px 24px 24px 8px;padding:38px;text-align:center;display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600;color:var(--accent)">Consideration + comparison</div>
+          <div style="font-size:var(--type-small);color:#3D4F46">needs described · options compared · shortlist formed</div>
+        </div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em;text-align:center">NOW HAPPENS INSIDE THE MODEL</div>
+      </div>
+      <div style="width:90px;height:2px;background:rgba(0,150,96,0.4);margin:0 10px;align-self:center;transform:translateY(-34px)"></div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:18px;width:420px">
+        <div style="width:100%;background:#FFFFFF;border:1px solid rgba(16,32,26,0.1);border-radius:16px;padding:30px;text-align:center;font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:600">The click</div>
+        <div style="font-size:var(--type-small);color:#57685F;text-align:center">A pre-qualified visitor,<br>arriving to confirm</div>
+      </div>
+    </div>
+    <div style="font-size:var(--type-body);color:#3D4F46;max-width:1400px">This is the mid-funnel — awareness, consideration, intent. <span style="color:#10201A;font-weight:600">Exactly the territory LoopMe measures in media</span> — migrated into a conversation nobody's instrumenting.</div>
+  </section>
+
+  <!-- ═══ 10 · OPENAI ═══ -->
+  <section data-label="OpenAI at Cannes" data-speaker-notes="TALKING POINTS
+• OpenAI's first-ever Cannes appearance, June 2026: 'We are clearly in the advertising business now'
+• ~20% of ChatGPT queries carry direct commercial intent; users are 'super intentional'
+• Ads pilot: launched Feb, $100M annualized in under two months; ambition: $100B by 2030
+• Humor beat: Anthropic's Super Bowl ad promising Claude stays ad-free — this fight is now on advertising's biggest stages
+
+READ-ALOUD
+Don't take my word that this is a real channel — take theirs. This June, OpenAI showed up at Cannes Lions for the first time and said, quote, we are clearly in the advertising business now. Their ads chief calls ChatGPT users super intentional — they arrive with a job to be done, not to scroll — and says about a fifth of queries carry direct commercial intent. Their ad pilot crossed a hundred million dollars annualized in under two months, and the reported ambition is a hundred billion by 2030. And you've all seen the other side: Anthropic bought a Super Bowl ad just to say Claude stays ad-free. When companies fight about ads in AI on the biggest stage in advertising — the question is settled." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">09 · It's official — OpenAI</div>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:44px">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:88px;font-weight:600;letter-spacing:-0.02em;line-height:1.12;max-width:1560px"><span style="color:var(--accent)">“</span>We are clearly in the advertising business now.<span style="color:var(--accent)">”</span></div>
+      <div style="font-size:var(--type-small);color:#57685F">OpenAI at Cannes Lions · June 2026 · its first appearance on advertising's biggest stage</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px">
+      <div style="border-top:1px solid rgba(16,32,26,0.12);padding-top:22px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;white-space:nowrap">~20%</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.4">of ChatGPT queries carry direct commercial intent</div>
+      </div>
+      <div style="border-top:1px solid rgba(16,32,26,0.12);padding-top:22px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;white-space:nowrap">$100M</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.4">annualized ad revenue in under two months of pilot</div>
+      </div>
+      <div style="border-top:1px solid rgba(16,32,26,0.12);padding-top:22px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:52px;font-weight:700;white-space:nowrap">$100B</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.4">ad revenue ambition by 2030 — a tenth of digital ad spend</div>
+      </div>
+      <div style="border-top:1px solid rgba(16,32,26,0.12);padding-top:22px;display:flex;flex-direction:column;gap:8px">
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:44px;font-weight:700;white-space:nowrap">“Super intentional”</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.4">how OpenAI's ads chief describes users: a job to be done, not a scroll</div>
+      </div>
+    </div>
+    <div style="display:var(--src-display);gap:40px;margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:var(--type-src);color:#71827A"><span>AdExchanger, Marketing Dive, Axios · Cannes Lions 2026</span><span>Aside: Anthropic's Super Bowl ad promised Claude stays ad-free — the fight is now on advertising's biggest stages</span></div>
+  </section>
+
+  <!-- ═══ 11 · GOOGLE ═══ -->
+  <section data-label="Google rebuilds ads" data-speaker-notes="TALKING POINTS
+• Five launches in five months — walk the timeline left to right
+• Vidhya Srinivasan: not placing ads into AI — 'reinventing what an ad is'
+• AI Shopping ads: Gemini reads your product feed and writes the ad per query — your data quality now writes your ad
+• UCP: discovery to checkout without ever visiting your site
+• The kicker: performance ads are arriving, but the organic recommendation cannot be bought — only earned
+
+READ-ALOUD
+Google isn't adding ads to AI — it's rebuilding ads as AI. In January they launched the Universal Commerce Protocol with Shopify, Etsy, Wayfair and Target: native checkout inside Gemini. In February, their ads VP said they're reinventing what an ad is. In May, Gemini started writing the ads contents per query — it reads your product feed and explains why your product fits. Think about that: your product data quality now writes your ad. And in June, everyone was at Cannes. The money is following the behavior. But here's what matters most for this talk: performance ads in AI are arriving — and the organic recommendation still cannot be bought. It can only be earned." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">10 · It's official — Google</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">Google isn't adding ads to AI. It's rebuilding ads <span style="color:var(--accent)">as</span> AI.</h2>
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;margin-top:20px">
+      <div style="height:2px;background:linear-gradient(90deg,rgba(0,150,96,0.6),rgba(0,150,96,0.15));margin:0 20px"></div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:30px;margin-top:-9px">
+        <div style="display:flex;flex-direction:column;gap:18px;padding:0 20px">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--accent)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em">JAN 2026</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;line-height:1.2">Universal Commerce Protocol + Direct Offers</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Agentic-commerce standard with Shopify, Etsy, Wayfair, Target. Native checkout in Gemini. Pilots: Chewy, Gap, L'Oréal.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;padding:0 20px">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--accent)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em">FEB 2026</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;line-height:1.2">“Reinventing what an ad is”</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Vidhya Srinivasan, VP ads &amp; commerce: not placing ads into AI experiences — rebuilding the ad itself.</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;padding:0 20px">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--accent)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em">MAY 2026</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;line-height:1.2">GML: ads written by Gemini, per query</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">Conversational Discovery ads, Highlighted Answers, AI Shopping ads — Gemini reads your product feed and writes why you fit. <span style="color:#3D4F46">Your data quality now writes your ad.</span></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:18px;padding:0 20px">
+          <div style="width:16px;height:16px;border-radius:50%;background:var(--accent)"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em">JUN 2026</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:32px;font-weight:600;line-height:1.2">Cannes: everyone's in</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.45">OpenAI pitches advertisers; Google shows the Gemini commerce stack. The money is following the behavior.</div>
+        </div>
+      </div>
+    </div>
+    <div style="border:1px solid rgba(0,150,96,0.35);border-radius:16px;padding:28px 36px;font-size:var(--type-body);color:#182720">Performance ads in AI are arriving. But the organic recommendation <span style="color:var(--accent);font-weight:600">cannot be bought — only earned</span>.</div>
+  </section>
+
+  <!-- ═══ 12 · THE LEVER ═══ -->
+  <section data-label="Earn the answer" data-speaker-notes="TALKING POINTS
+• Today there is exactly one lever for the organic answer: content
+• Three questions: what do customers ask, what do engines retrieve, do you show up
+• Then plan content like media: WHAT, WHERE (your domain vs the third parties LLMs cite), WHO, WHICH MARKET
+• Answers change by geography and language — plan per market
+
+READ-ALOUD
+So how do you earn it? Today we know of exactly one lever for the organic answer: content. But not content as we knew it. You build the strategy on three questions. What do your customers actually ask when they talk to these models — real conversations, not keywords. What do the engines retrieve when they answer — the fanouts, the sources they trust, the domains they cite. And do you show up — and how are you framed against your competitors. Then you plan it like media: what to publish, where — your own domain versus the third-party sources the models actually cite — for which customer profile, and in which market. Because the same question gets a different answer in London than in New York." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">11 · The playbook</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">You can't buy the recommendation. You can earn it.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:var(--gap-title)">
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:38px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">ASK</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600;line-height:1.2">What do your customers actually ask?</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.5">Real conversational prompts — not keywords.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:38px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">RETRIEVE</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600;line-height:1.2">What do the engines pull to answer?</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.5">Query fanouts, cited sources, trusted domains.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.08);border-radius:20px;padding:38px;display:flex;flex-direction:column;gap:16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">APPEAR</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600;line-height:1.2">Do you show up — and how are you framed?</div>
+        <div style="font-size:var(--type-small);color:#57685F;line-height:1.5">Presence, share of recommendation, sentiment vs competitors.</div>
+      </div>
+    </div>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:20px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;letter-spacing:0.1em">→ THEN PLAN CONTENT LIKE MEDIA</div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:26px">
+        <div style="border:1px solid rgba(0,150,96,0.3);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">WHAT</span><span style="font-size:var(--type-small);color:#57685F">to publish — citable, machine-readable</span></div>
+        <div style="border:1px solid rgba(0,150,96,0.3);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">WHERE</span><span style="font-size:var(--type-small);color:#57685F">your domain vs the third parties LLMs actually cite</span></div>
+        <div style="border:1px solid rgba(0,150,96,0.3);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">WHO</span><span style="font-size:var(--type-small);color:#57685F">which persona is asking</span></div>
+        <div style="border:1px solid rgba(0,150,96,0.3);border-radius:14px;padding:24px 28px;display:flex;flex-direction:column;gap:6px"><span style="font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:600">WHICH MARKET</span><span style="font-size:var(--type-small);color:#57685F">answers change by geography and language</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 13 · INSTRUMENTATION ═══ -->
+  <section data-label="Instrumentation" data-speaker-notes="TALKING POINTS
+• Position the category: GEO / AEO analytics
+• Monitor thousands of realistic conversations across engines, per persona and market
+• Track visibility, recommendation share, sentiment, citations — and the fanouts behind them
+• Mirror their philosophy: don't guess brand outcomes — measure and optimize in-flight
+
+READ-ALOUD
+None of that works on intuition. A channel you can't measure is a channel you don't own. What this takes is instrumentation: continuously running thousands of realistic customer conversations across every engine, per persona and per market — tracking whether you show up, how often you're recommended, how you're framed, and which sources drive it. Then turning that into a content plan and measuring whether the needle moves. This should resonate — it's the same philosophy you apply to brand outcomes. Don't guess. Measure, and optimize in-flight." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">12 · The category · GEO / AEO analytics</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">A channel you can't measure is a channel you don't own.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:20px;min-height:0">
+      <div style="display:flex;flex-direction:column;gap:26px;font-size:var(--type-body);line-height:1.5;color:#3D4F46">
+        <div style="display:flex;gap:20px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">01</span><span>Monitor <span style="color:#10201A;font-weight:600">thousands of realistic conversations</span> across every engine, per persona and market.</span></div>
+        <div style="display:flex;gap:20px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">02</span><span>Track <span style="color:#10201A;font-weight:600">visibility, recommendation share, sentiment, citations</span> — and the fanouts behind them.</span></div>
+        <div style="display:flex;gap:20px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">03</span><span>Turn it into a <span style="color:#10201A;font-weight:600">content plan</span> — and measure the movement.</span></div>
+        <div style="border-left:3px solid var(--accent);padding-left:26px;font-size:var(--type-small);color:#57685F">The same philosophy LoopMe applies to brand outcomes: don't guess. Measure, optimize in-flight.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid rgba(16,32,26,0.1);border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:26px">
+        <div style="display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#10201A;letter-spacing:0.1em">SHARE OF RECOMMENDATION</span><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A">CHATGPT · GEMINI · PERPLEXITY · AI OVERVIEWS</span></div>
+        <div style="display:flex;flex-direction:column;gap:18px">
+          <div style="display:grid;grid-template-columns:200px 1fr 90px;gap:18px;align-items:center"><span style="font-size:var(--type-small);color:#3D4F46">Your brand</span><div style="height:26px;background:rgba(16,32,26,0.06);border-radius:6px;overflow:hidden"><div style="height:100%;width:38%;background:var(--accent);border-radius:6px"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent)">38%</span></div>
+          <div style="display:grid;grid-template-columns:200px 1fr 90px;gap:18px;align-items:center"><span style="font-size:var(--type-small);color:#57685F">Competitor A</span><div style="height:26px;background:rgba(16,32,26,0.06);border-radius:6px;overflow:hidden"><div style="height:100%;width:31%;background:#B8C4BD;border-radius:6px"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">31%</span></div>
+          <div style="display:grid;grid-template-columns:200px 1fr 90px;gap:18px;align-items:center"><span style="font-size:var(--type-small);color:#57685F">Competitor B</span><div style="height:26px;background:rgba(16,32,26,0.06);border-radius:6px;overflow:hidden"><div style="height:100%;width:19%;background:#B8C4BD;border-radius:6px"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">19%</span></div>
+          <div style="display:grid;grid-template-columns:200px 1fr 90px;gap:18px;align-items:center"><span style="font-size:var(--type-small);color:#57685F">Competitor C</span><div style="height:26px;background:rgba(16,32,26,0.06);border-radius:6px;overflow:hidden"><div style="height:100%;width:12%;background:#B8C4BD;border-radius:6px"></div></div><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">12%</span></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A"><span>PERSONA: “SLEEP-FOCUSED BUYER”</span><span>MARKET: UK</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 14 · WHOOP ═══ -->
+  <section data-label="WHOOP report" data-speaker-notes="TALKING POINTS
+• Transition: enough theory — a brand this room knows well
+• Why WHOOP is the perfect case: high-consideration, subscription, fierce category, exactly the question people ask AI
+• Not a live demo — an executive visibility report: findings and actionable insights
+• Walk the five teasers, then switch to the report
+
+READ-ALOUD
+Enough theory — let's make it concrete with a brand you know well: WHOOP. It's the perfect case. A high-consideration purchase, a subscription business, a fierce category against Oura, Garmin, Fitbit and Apple — and it lives on exactly the kind of question people now ask AI. We pointed Genezio at it and produced an executive report. I'll walk you through where WHOOP shows up and where it doesn't, how it shares the recommendation with competitors on each engine, the actual fanouts and sources driving those answers, — and the concrete content gaps with what we'd do about them." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">13 · Case study</div>
+      <div style="border:1px solid var(--accent);border-radius:999px;padding:10px 28px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.14em">EXECUTIVE REPORT</div>
+    </div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">Let's make it concrete: WHOOP.</h2>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1.3fr;gap:70px;margin-top:var(--gap-title);min-height:0">
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div style="font-size:var(--type-body);color:#3D4F46;line-height:1.5">The perfect case: a high-consideration purchase, a subscription model, a fierce category — and exactly the question people ask AI.</div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px">
+          <span style="border:1px solid rgba(16,32,26,0.15);border-radius:999px;padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">vs Oura</span>
+          <span style="border:1px solid rgba(16,32,26,0.15);border-radius:999px;padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">vs Garmin</span>
+          <span style="border:1px solid rgba(16,32,26,0.15);border-radius:999px;padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">vs Fitbit</span>
+          <span style="border:1px solid rgba(16,32,26,0.15);border-radius:999px;padding:12px 24px;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#57685F">vs Apple Watch</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A;letter-spacing:0.1em">WHAT THE REPORT SHOWS</div>
+        <div style="display:flex;gap:18px;align-items:baseline;border-bottom:1px solid rgba(16,32,26,0.08);padding-bottom:18px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">01</span><span style="font-size:var(--type-body)">Where WHOOP appears — and doesn't — across ChatGPT, Gemini, Perplexity, AI Overviews</span></div>
+        <div style="display:flex;gap:18px;align-items:baseline;border-bottom:1px solid rgba(16,32,26,0.08);padding-bottom:18px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">02</span><span style="font-size:var(--type-body)">Share of recommendation vs competitors, per engine</span></div>
+        <div style="display:flex;gap:18px;align-items:baseline;border-bottom:1px solid rgba(16,32,26,0.08);padding-bottom:18px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">03</span><span style="font-size:var(--type-body)">The actual query fanouts and cited sources driving those answers</span></div>
+        <div style="display:flex;gap:18px;align-items:baseline;border-bottom:1px solid rgba(16,32,26,0.08);padding-bottom:18px"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">04</span><span style="font-size:var(--type-body)">Geographic differences — UK vs US personas get different answers</span></div>
+        <div style="display:flex;gap:18px;align-items:baseline"><span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;font-size:26px">05</span><span style="font-size:var(--type-body)">The content gaps: sources the engines trust where WHOOP is absent — and what to do about them</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 15 · THE LOOP ═══ -->
+  <section data-label="The loop" data-speaker-notes="TALKING POINTS
+• The operating model is a flywheel — every turn spins it faster
+• Measure → diagnose → publish → verify, then go again
+• Engines re-crawl and re-rank continuously — improvements compound
+• Early movers pull away; latecomers face a wheel already spinning against them
+
+READ-ALOUD
+What a brand does with this is not a project — it's a flywheel. You measure the conversations, diagnose the gaps, publish citable content in the places the engines trust, and verify that visibility actually moved. Then you go around again. And because the engines re-crawl and re-rank continuously, every turn spins the wheel faster — the citations you earn make you more likely to be retrieved, which earns more citations. That's why early movers compound. And it's also the uncomfortable part: if a competitor starts spinning this wheel first, you're not catching up to a position — you're catching up to momentum." style="background:#FAFBFA;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">14 · The operating model</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">From invisible to recommended: the flywheel.</h2>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;min-height:0">
+      <div style="position:relative;width:1400px;height:660px">
+        <div style="position:absolute;left:50%;top:50%;width:460px;height:460px;transform:translate(-50%,-50%)">
+          <svg viewBox="0 0 520 520" style="width:100%;height:100%;display:block;transform-origin:50% 50%;animation:flywheel-spin 14s linear infinite">
+            <circle cx="260" cy="260" r="248" fill="none" stroke="rgba(0,150,96,0.35)" stroke-width="3" stroke-dasharray="5 16"></circle>
+            <path d="M-13,-16 L15,0 L-13,16" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round" transform="translate(435.4,84.6) rotate(45)"></path>
+            <path d="M-13,-16 L15,0 L-13,16" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round" transform="translate(435.4,435.4) rotate(135)"></path>
+            <path d="M-13,-16 L15,0 L-13,16" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round" transform="translate(84.6,435.4) rotate(225)"></path>
+            <path d="M-13,-16 L15,0 L-13,16" fill="none" stroke="var(--accent)" stroke-width="4.5" stroke-linejoin="round" transform="translate(84.6,84.6) rotate(315)"></path>
+          </svg>
+        </div>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:270px;display:flex;flex-direction:column;gap:10px;text-align:center">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.08em;line-height:1.4">EVERY TURN SPINS IT FASTER</div>
+          <div style="font-size:24px;color:#71827A;line-height:1.4">engines re-crawl continuously — early movers compound</div>
+        </div>
+        <div style="position:absolute;left:50%;top:0;transform:translateX(-50%);width:430px;background:#FFFFFF;border:1px solid rgba(0,150,96,0.4);border-radius:18px;padding:26px 32px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(16,32,26,0.06)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">01 · MEASURE</div>
+          <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">Conversations, fanouts, citations — per engine, persona, market</div>
+        </div>
+        <div style="position:absolute;right:0;top:50%;transform:translateY(-50%);width:380px;background:#FFFFFF;border:1px solid rgba(16,32,26,0.12);border-radius:18px;padding:26px 32px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(16,32,26,0.06)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">02 · DIAGNOSE</div>
+          <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">Gaps by persona, market, engine — and the sources that matter</div>
+        </div>
+        <div style="position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:430px;background:#FFFFFF;border:1px solid rgba(16,32,26,0.12);border-radius:18px;padding:26px 32px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(16,32,26,0.06)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">03 · PUBLISH</div>
+          <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">Machine-readable, citable content — in the places engines trust</div>
+        </div>
+        <div style="position:absolute;left:0;top:50%;transform:translateY(-50%);width:380px;background:#FFFFFF;border:1px solid rgba(16,32,26,0.12);border-radius:18px;padding:26px 32px;display:flex;flex-direction:column;gap:8px;box-shadow:0 10px 30px rgba(16,32,26,0.06)">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">04 · VERIFY</div>
+          <div style="font-size:var(--type-small);color:#3D4F46;line-height:1.4">Did visibility and recommendation share actually move?</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 16 · WHY LOOPME ═══ -->
+  <section data-label="Why LoopMe" data-speaker-notes="TALKING POINTS
+• The mid-funnel didn't disappear — it moved into AI conversations
+• Advertisers already feel it: brand lift is up, search-era traffic is down
+• Two measurement surfaces now: brand outcomes in media, brand outcomes in AI conversations — the second is mostly dark
+• Whoever measures both sides first sees the whole funnel
+
+READ-ALOUD
+So what does all this mean here? The mid-funnel didn't disappear — it moved. Every advertiser asking why brand lift is up while search-era traffic is down is feeling exactly this shift. Which means there are now two measurement surfaces: brand outcomes shaped in media — which this room understands better than anyone — and brand outcomes formed inside AI conversations, which today are mostly dark. Whoever measures both sides first sees the whole funnel. For brands like WHOOP, that complete picture is the difference between reacting to the shift and being ahead of it." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:var(--accent);text-transform:uppercase">15 · What this means</div>
+    <h2 style="font-family:'Space Grotesk',sans-serif;font-size:var(--type-title);font-weight:600;letter-spacing:-0.02em;line-height:1.05;margin:26px 0 0 0">The mid-funnel didn't disappear. It moved.</h2>
+    <div style="flex:1;display:flex;align-items:center;justify-content:center;margin-top:10px">
+      <div style="position:relative;width:820px;height:460px">
+        <div style="position:absolute;left:0;top:0;width:460px;height:460px;border-radius:50%;border:2px solid rgba(16,32,26,0.25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 170px 0 50px;box-sizing:border-box;text-align:center">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600">Brand outcomes in media</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.4;max-width:280px">Awareness, consideration, intent — measured and optimized</div>
+        </div>
+        <div style="position:absolute;right:0;top:0;width:460px;height:460px;border-radius:50%;border:2px solid var(--accent);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:0 50px 0 170px;box-sizing:border-box;text-align:center">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:600;color:var(--accent)">Brand outcomes in AI conversations</div>
+          <div style="font-size:var(--type-small);color:#57685F;line-height:1.4;max-width:280px">Visibility, recommendation share, citations — mostly unmeasured today</div>
+        </div>
+        <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#FFFFFF;border:1px solid rgba(0,150,96,0.4);border-radius:16px;padding:26px 30px;text-align:center;width:230px;box-shadow:0 12px 32px rgba(16,32,26,0.08);box-sizing:border-box">
+          <div style="font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;line-height:1.3">Both sides, seen together, is the whole funnel</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;gap:26px">
+      <div style="flex:1;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px;font-size:var(--type-small);color:#3D4F46;line-height:1.45">Every advertiser asking <span style="color:#10201A">“why is brand lift up but traffic down?”</span> is feeling this shift.</div>
+      <div style="flex:1;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px;font-size:var(--type-small);color:#3D4F46;line-height:1.45">Brand outcomes now form <span style="color:#10201A">inside AI conversations</span> — adjacent to your measurement business.</div>
+      <div style="flex:1;border-top:1px solid rgba(16,32,26,0.12);padding-top:20px;font-size:var(--type-small);color:#3D4F46;line-height:1.45">Whoever measures both sides first sees the whole funnel — for brands like <span style="color:#10201A">WHOOP</span>.</div>
+    </div>
+  </section>
+
+  <!-- ═══ 17 · BOTTOM LINE ═══ -->
+  <section data-label="Bottom line" data-speaker-notes="TALKING POINTS
+• Slow down — two lines, let them land
+• Content and performance are both being rewritten for machines that read, reason, recommend
+• No pitch here — just the stakes
+
+READ-ALOUD
+So here's the bottom line. The world is changing. Content and performance advertising are both being rewritten — for machines that read, reason, and recommend. You either learn the new rules, or others will learn them first." style="background:#EAEFEC;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="max-width:1460px;display:flex;flex-direction:column;gap:44px;text-align:center">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:80px;font-weight:600;letter-spacing:-0.02em;line-height:1.15">The world is changing. You either learn the new rules of advertising — <span style="color:var(--accent)">or others will.</span></div>
+      <div style="font-size:var(--type-body);color:#57685F">Content and performance are being rewritten for machines that read, reason, and recommend.</div>
+    </div>
+  </section>
+
+  <!-- ═══ 18 · CLOSE ═══ -->
+  <section data-label="Close" data-speaker-notes="TALKING POINTS
+• Soft close — this was a briefing, not a pitch
+• Genezio happens to build in this space; we think we can help
+• Invitation, not proposal: get in touch, keep the conversation going
+• Thank the room; open for questions
+
+READ-ALOUD
+That's the briefing. Genezio happens to build the instruments for this new channel — that's how we know what the machines say about brands like WHOOP. We think we can help you and your advertisers see this clearly. If any of this resonated, let's get in touch and keep the conversation going. Thank you — happy to take questions." style="background:#F1F4F2;color:#10201A;font-family:'IBM Plex Sans',system-ui,sans-serif;display:flex;flex-direction:column;padding:var(--pad-top) var(--pad-x) var(--pad-bottom);box-sizing:border-box;overflow:hidden">
+    <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:50px">
+      <img src="assets/genezio-logo.svg" alt="Genezio" style="height:72px;align-self:flex-start">
+      <div style="font-family:'Space Grotesk',sans-serif;font-size:80px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;max-width:1650px">See what the machines <span style="color:var(--accent)">say about you</span>.</div>
+      <div style="display:flex;gap:26px;max-width:1500px">
+        <div style="flex:1.4;border:1px solid rgba(0,150,96,0.4);background:rgba(0,150,96,0.05);border-radius:18px;padding:34px 40px;display:flex;flex-direction:column;gap:12px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:var(--accent);letter-spacing:0.1em">LET'S TALK</div>
+          <div style="font-size:var(--type-body);line-height:1.4">We think we can help. Let's get in touch and keep the conversation going.</div>
+        </div>
+        <div style="flex:1;border:1px solid rgba(16,32,26,0.12);border-radius:18px;padding:34px 40px;display:flex;flex-direction:column;justify-content:center;gap:12px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:28px;color:#10201A">genezio.com</div>
+          <div style="font-size:var(--type-small);color:#57685F">Bogdan Ripa · Co-founder</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:24px;color:#71827A"><span>GENEZIO × LOOPME · JULY 2026</span><span>THANK YOU</span></div>
+  </section>
+
+</x-import>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#009660&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#009660&quot;,&quot;#5BD1FF&quot;,&quot;#FFD35B&quot;],&quot;section&quot;:&quot;Theme&quot;},&quot;showSources&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Content&quot;}}">
+class Component extends DCLogic {
+  applyTweaks() {
+    const root = document.documentElement;
+    root.style.setProperty('--accent', this.props.accent ?? '#009660');
+    root.style.setProperty('--src-display', (this.props.showSources ?? true) ? 'flex' : 'none');
+  }
+  componentDidMount() { this.applyTweaks(); }
+  componentDidUpdate() { this.applyTweaks(); }
+  renderVals() { return {}; }
+}
+</script>
+<script>
+/* Local presenting helper (added for the exported copy — not part of the
+   Claude Design source).
+     F  — fill the browser window: hide/show the left-hand slide list.
+     A  — play/stop the current slide's narration (audio/slide-NN.mp3, in
+          Bogdan's voice). Manual navigation stops it.
+     P  — PRESENT: full-browser, narrate the current slide, then auto-advance
+          (500ms → next slide → 500ms → narrate) through to the last slide.
+          Press P again, press A, or navigate manually to cancel. */
+(function () {
+  function deck() { return document.querySelector('deck-stage'); }
+  function currentIndex() {
+    var ds = deck(); if (!ds) return null;
+    var active = ds.querySelector('[data-deck-active]');
+    if (!active) return null;
+    var n = parseInt(active.getAttribute('data-deck-slide'), 10); // 0-based
+    return isNaN(n) ? null : n;
+  }
+  function slideCount() {
+    var ds = deck(); return ds ? ds.querySelectorAll('[data-deck-slide]').length : 0;
+  }
+  var programmaticNav = false;
+  function goNext() {
+    var ds = deck(); if (!ds) return;
+    var btn = ds.shadowRoot && ds.shadowRoot.querySelector('.next');
+    if (btn) { programmaticNav = true; btn.click(); }
+  }
+  function fileFor(idx) { return 'audio/slide-' + String(idx + 1).padStart(2, '0') + '.mp3'; }
+
+  var audio = null;   // current Audio element
+  var timer = null;   // pending setTimeout during present-mode gaps
+  var presenting = false;
+
+  function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
+  function stopAudio() {
+    if (audio) { audio.pause(); audio.onended = null; audio.onerror = null; audio = null; }
+  }
+  function stopPresent() { presenting = false; clearTimer(); stopAudio(); }
+
+  // Play the current slide's clip once; onEnd() fires when it finishes.
+  function play(onEnd) {
+    stopAudio();
+    var idx = currentIndex(); if (idx == null) return;
+    var file = fileFor(idx);
+    audio = new Audio(file);
+    audio.onended = function () { audio = null; if (onEnd) onEnd(); };
+    audio.onerror = function () { console.warn('[deck] no narration file:', file); audio = null; if (onEnd) onEnd(); };
+    audio.play().catch(function () { /* first play is inside the keypress gesture */ });
+  }
+
+  function presentStep() {
+    if (!presenting) return;
+    play(function () {                       // this slide's narration ended
+      if (!presenting) return;
+      var idx = currentIndex();
+      if (idx == null || idx >= slideCount() - 1) { presenting = false; return; } // reached the end
+      clearTimer();
+      timer = setTimeout(function () {        // 500ms after speech ends
+        if (!presenting) return;
+        goNext();                             // advance one slide
+        timer = setTimeout(function () {      // 500ms after the slide changes
+          if (!presenting) return;
+          presentStep();                      // narrate the new slide
+        }, 500);
+      }, 500);
+    });
+  }
+
+  window.addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    var k = e.key;
+    if (k === 'f' || k === 'F') {
+      e.preventDefault(); var ds = deck(); if (ds) ds.toggleAttribute('no-rail'); return;
+    }
+    if (k === 'a' || k === 'A') {
+      e.preventDefault();
+      if (presenting) { stopPresent(); return; }   // A cancels a running presentation
+      if (audio) stopAudio(); else play(null);     // otherwise toggle current-slide narration
+      return;
+    }
+    if (k === 'p' || k === 'P') {
+      e.preventDefault();
+      if (presenting) { stopPresent(); return; }
+      var ds = deck(); if (!ds) return;
+      presenting = true;
+      ds.setAttribute('no-rail', '');              // full browser
+      presentStep();
+      return;
+    }
+  });
+
+  // A slide change we didn't trigger (manual nav, reset) cancels playback.
+  document.addEventListener('slidechange', function () {
+    if (programmaticNav) { programmaticNav = false; return; } // our own present-mode advance
+    if (presenting) stopPresent(); else stopAudio();
+  });
+})();
+</script>
+</body>
+</html>
