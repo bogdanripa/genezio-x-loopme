@@ -831,18 +831,25 @@ class Component extends DCLogic {
     if (toggleBtn || !isMobile()) return;
     var style = document.createElement('style');
     style.textContent =
-      '.deck-present-toggle{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);' +
-      'right:calc(env(safe-area-inset-right,0px) + 12px);z-index:2147483647;' +
-      'display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:none;' +
-      'border-radius:999px;font-family:\'IBM Plex Mono\',monospace;font-size:15px;' +
-      'font-weight:500;letter-spacing:0.04em;color:#fff;background:rgba(16,32,26,0.72);' +
-      '-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);cursor:pointer;' +
-      'box-shadow:0 6px 20px rgba(0,0,0,0.28);-webkit-tap-highlight-color:transparent;' +
-      'touch-action:manipulation;transition:background .15s ease}' +
-      '.deck-present-toggle.is-on{background:var(--accent,#009660);color:#fff}' +
-      '.deck-present-toggle .icon{width:9px;height:11px;flex:0 0 auto;background:currentColor;' +
+      '@keyframes deck-toggle-pulse{0%,100%{box-shadow:0 8px 22px rgba(0,0,0,0.28),0 0 0 0 rgba(0,150,96,0.55)}' +
+      '50%{box-shadow:0 8px 22px rgba(0,0,0,0.28),0 0 0 12px rgba(0,150,96,0)}}' +
+      '.deck-present-toggle{position:fixed;top:calc(env(safe-area-inset-top,0px) + 14px);' +
+      'right:calc(env(safe-area-inset-right,0px) + 14px);z-index:2147483647;' +
+      'display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border:none;' +
+      'border-radius:999px;font-family:\'IBM Plex Mono\',monospace;font-size:18px;' +
+      'font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:#fff;' +
+      /* Idle = bright accent so it stands out on the light slides */
+      'background:var(--accent,#009660);' +
+      'cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,0.28);' +
+      '-webkit-tap-highlight-color:transparent;touch-action:manipulation;' +
+      'animation:deck-toggle-pulse 2s ease-in-out infinite;transition:background .15s ease,transform .1s ease}' +
+      '.deck-present-toggle:active{transform:scale(0.95)}' +
+      /* Playing = quiet dark pill so it recedes during the talk */
+      '.deck-present-toggle.is-on{background:rgba(16,32,26,0.78);' +
+      '-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);animation:none}' +
+      '.deck-present-toggle .icon{width:14px;height:16px;flex:0 0 auto;background:currentColor;' +
       'clip-path:polygon(0 0,100% 50%,0 100%)}' +
-      '.deck-present-toggle.is-on .icon{clip-path:none;width:10px;height:11px}';
+      '.deck-present-toggle.is-on .icon{clip-path:none;width:14px;height:15px;border-radius:2px}';
     document.head.appendChild(style);
 
     toggleBtn = document.createElement('button');
