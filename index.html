@@ -727,13 +727,22 @@ class Component extends DCLogic {
   }
   function fileFor(idx) { return 'audio/slide-' + String(idx + 1).padStart(2, '0') + '.mp3'; }
 
-  var audio = null;   // current Audio element
+  // ONE persistent Audio element, reused for every slide. Mobile browsers
+  // (iOS especially) only allow programmatic playback on an element that has
+  // already played once inside a user gesture — so we must NOT create a fresh
+  // Audio() per slide, or auto-advance would go silent after the first clip.
+  var audio = null;   // the single, gesture-unlocked Audio element
   var timer = null;   // pending setTimeout during present-mode gaps
   var presenting = false;
 
+  function getAudio() {
+    if (!audio) audio = new Audio();
+    return audio;
+  }
   function clearTimer() { if (timer) { clearTimeout(timer); timer = null; } }
   function stopAudio() {
-    if (audio) { audio.pause(); audio.onended = null; audio.onerror = null; audio = null; }
+    // Pause but keep the element alive (and unlocked) for the next slide.
+    if (audio) { audio.onended = null; audio.onerror = null; audio.pause(); }
   }
   function stopPresent() { presenting = false; clearTimer(); stopAudio(); syncToggle(); }
   function startPresent() {
@@ -746,13 +755,16 @@ class Component extends DCLogic {
 
   // Play the current slide's clip once; onEnd() fires when it finishes.
   function play(onEnd) {
-    stopAudio();
     var idx = currentIndex(); if (idx == null) return;
     var file = fileFor(idx);
-    audio = new Audio(file);
-    audio.onended = function () { audio = null; if (onEnd) onEnd(); };
-    audio.onerror = function () { console.warn('[deck] no narration file:', file); audio = null; if (onEnd) onEnd(); };
-    audio.play().catch(function () { /* first play is inside the keypress gesture */ });
+    var a = getAudio();
+    a.onended = null; a.onerror = null; a.pause();   // interrupt any prior clip
+    a.onended = function () { if (onEnd) onEnd(); };
+    a.onerror = function () { console.warn('[deck] no narration file:', file); if (onEnd) onEnd(); };
+    a.src = file;   // fresh src starts at 0
+    // Same reused element each slide, so playback stays unlocked on mobile
+    // after the initial gesture (button tap / keypress) starts the first clip.
+    a.play().catch(function () { /* blocked until the first user gesture */ });
   }
 
   function presentStep() {
